@@ -14,17 +14,22 @@
 <?php
 
 function addMessage($login, $message){
-    $myJSON = json_decode(file_get_contents("messages.json"));
-    $messageBody = (object) ['date' => time(), 'user' => $login, 'message' => $message];
-    $myJSON->messages[] = $messageBody;
-    file_put_contents("messages.json", json_encode($myJSON));
+    if ($message !== '') {
+        $myJSON = json_decode(file_get_contents("messages.json"));
+        $messageBody = (object)['date' => time(), 'user' => $login, 'message' => $message];
+        $myJSON->messages[] = $messageBody;
+        file_put_contents("messages.json", json_encode($myJSON));
+    }
+    else {
+        echo '<p style="color:red">Сообщение пустое</p>';
+    }
 }
 
 function displayMessages(){
     $myJSON = json_decode(file_get_contents("messages.json"));
     foreach($myJSON->messages as $message){
         echo '<p style="color:blue">' . date('m/d/Y H:i:s', $message->date) . ' ' . $message->user . '</p>';
-        echo '<p>' . $message->message . '</p>';
+        echo '<p>' . $message->message . '</p><hr>';
     }
 }
 
