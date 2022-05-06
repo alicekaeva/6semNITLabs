@@ -1,4 +1,4 @@
-<form action="/" method="post">
+<form action="/" method="get">
     <label> Логин
         <input name="login" autocomplete="off"/>
     </label><br>
@@ -8,11 +8,13 @@
     <label> Сообщение
         <input name="message" autocomplete="off"/>
     </label><br>
-    <input type="submit" value="Опубликовать" autocomplete="off"/>
+    <input type="submit" value="Опубликовать">
 </form>
+<style>
+    body {background-color: #debc8a;}
+</style>
 
 <?php
-
 function addMessage($login, $message){
     if ($message !== '') {
         $myJSON = json_decode(file_get_contents("messages.json"));
@@ -33,15 +35,19 @@ function displayMessages(){
     }
 }
 
-$login = $_POST["login"];
-$password = $_POST["password"];
-$message = $_POST["message"];
-if (($login === "alicekaeva" && $password === "crazy_frog_2022") || ($login === "шлепа" && $password === "чмоня")) {
-    addMessage($login, $message);
+if (!isset($_GET['login']) && !isset($_GET['password'])){
+    echo '<p style="color:red">Вы не авторизованы</p>';
 }
 else {
-    echo '<p style="color:red">Такого пользователя не существует</p>';
+    $login = $_GET["login"];
+    $password = $_GET["password"];
+    $message = $_GET["message"];
+    if (($login === "alicekaeva" && $password === "crazy_frog_2022") || ($login === "шлепа" && $password === "чмоня")) {
+        addMessage($login, $message);
+    }
+    else  {
+        echo '<p style="color:red">Такого пользователя не существует</p>';
+    }
 }
 displayMessages();
-
 ?>
