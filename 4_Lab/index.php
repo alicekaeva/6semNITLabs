@@ -18,7 +18,7 @@
 function addMessage($login, $message){
     if ($message !== '') {
         $myJSON = json_decode(file_get_contents("messages.json"));
-        $messageBody = (object)['date' => time(), 'user' => $login, 'message' => $message];
+        $messageBody = (object)['date' => time() + 60*60*10, 'user' => $login, 'message' => $message];
         $myJSON->messages[] = $messageBody;
         file_put_contents("messages.json", json_encode($myJSON));
     }
