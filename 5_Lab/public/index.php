@@ -7,10 +7,12 @@ spl_autoload_register(function ($className) {
     require_once $fullPath;
 });
 
-use Human;
 use subclass\Hand;
+use subclass\subsubclass\Fingers;
 
 $a= new Human();
 $b = new Hand();
+$c = new Fingers();
 $a->print();
 $b->print();
+$c->print();
