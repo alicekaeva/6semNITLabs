@@ -9,6 +9,7 @@
         <input name="message" autocomplete="off"/>
     </label><br>
     <input type="submit" value="Опубликовать">
+    <input type="submit" name="clear" value="Очистить чат">
 </form>
 <style>
     body {background-color: #debc8a;}
@@ -44,10 +45,15 @@ else {
     $message = $_GET["message"];
     if (($login === "alicekaeva" && $password === "crazy_frog_2022") || ($login === "шлепа" && $password === "чмоня")) {
         addMessage($login, $message);
+        header('Location: /');
     }
     else  {
         echo '<p style="color:red">Такого пользователя не существует</p>';
     }
+}
+if (isset($_GET['clear']))
+{
+    file_put_contents('messages.json', '{"messages":[]}');
 }
 displayMessages();
 ?>
