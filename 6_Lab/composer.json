@@ -1,0 +1,13 @@
+{
+    "name": "alicekaeva/6_lab",
+    "autoload": {
+        "psr-4": {
+            "Controllers\\": "src/Controllers",
+        }
+    },
+    "require": {
+        "twig/twig": "^3.3",
+        "monolog/monolog": "^2.6",
+      "ext-json": "*"
+    }
+}
