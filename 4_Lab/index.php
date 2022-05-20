@@ -22,6 +22,7 @@ function addMessage($login, $message){
         $messageBody = (object)['date' => time() + 60*60*10, 'user' => $login, 'message' => $message];
         $myJSON->messages[] = $messageBody;
         file_put_contents("messages.json", json_encode($myJSON));
+        header('Location: /');
     }
     else {
         echo '<p style="color:red">Сообщение пустое</p>';
@@ -36,24 +37,22 @@ function displayMessages(){
     }
 }
 
-if (!isset($_GET['login']) && !isset($_GET['password'])){
+if (!isset($_GET['login']) && !isset($_GET['password']) && !isset($_GET['clear'])){
     echo '<p style="color:red">Вы не авторизованы</p>';
-}
-else {
+} else {
     $login = $_GET["login"];
     $password = $_GET["password"];
     $message = $_GET["message"];
-    if (($login === "alicekaeva" && $password === "crazy_frog_2022") || ($login === "шлепа" && $password === "чмоня")) {
+    if (($login === "alicekaeva" && $password === "crazy_frog_2022") || ($login === "шлепа" && $password === "чмоня") && !isset($_GET['clear'])) {
         addMessage($login, $message);
-        header('Location: /');
-    }
-    else  {
+    } elseif (!isset($_GET['clear'])) {
         echo '<p style="color:red">Такого пользователя не существует</p>';
     }
 }
 if (isset($_GET['clear']))
 {
     file_put_contents('messages.json', '{"messages":[]}');
+    echo '<p style="color:red">Чат очищен</p>';
 }
 displayMessages();
 ?>
