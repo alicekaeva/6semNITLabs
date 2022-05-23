@@ -1,0 +1,6 @@
+{% for message in messages %}
+    {% if message is not null %}
+        <p style="color:blue">{{ message.user_date }} {{ message.user_login}}</p>
+        <p>{{ message.user_message }}</p><hr>
+    {% endif %}
+{% endfor %}
