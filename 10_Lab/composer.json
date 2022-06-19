@@ -1,0 +1,11 @@
+{
+    "name": "alicekaeva/10_lab",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {
+        "twig/twig": "^3.4"
+    }
+}

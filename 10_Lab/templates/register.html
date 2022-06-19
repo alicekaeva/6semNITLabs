@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<form action="/register.php" method="post">
+    <input name="login" type="hidden">
+    <label> Логин
+        <input name="login" type="text">
+    </label><br>
+    <label> Пароль
+        <input name="password" type="password">
+    </label><br>
+    <input type="submit" value="Зарегистрироваться">
+</form>
+</body>
+<style>
+    label {
+        margin-bottom: 4px;
+        font-size: 18px;
+        font-weight: 700;
+        color: black;
+        font-family: sans-serif;
+    }
+    input[type=submit] {
+        padding:5px 15px;
+        background:#009879;
+        border:0 none;
+        cursor:pointer;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+    }
+    input {
+        margin-bottom: 4px;
+        padding: 4px 10px;
+        border: 1px solid #666;
+        font-family: sans-serif;
+        color: black;
+        font-size: 16px;
+    }
+</style>
+</html>
